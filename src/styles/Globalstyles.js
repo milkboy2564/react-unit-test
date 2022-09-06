@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
       'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
       'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
   }
+  body {
+    max-width: 1190px;
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export default GlobalStyle;
