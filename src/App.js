@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopRated from './pages/topRated/TopRated';
+import Header from './components/Header';
 import GlobalStyle from './styles/Globalstyles';
 
 function App() {
   return (
     <Router>
       <GlobalStyle />
+      <Header />
       <Routes>
         <Route path="/" element={<div>메인dsgsdgds 페이지</div>}></Route>
         <Route path="/movie/popular" element={<div>인기영화</div>}></Route>

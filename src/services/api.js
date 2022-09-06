@@ -14,10 +14,13 @@ export const movieApi = {
   popular: () => api.get('movie/popular'),
   toprated: page => api.get(`movie/top_rated?page=${page}`),
   movieDetail: movie_id => api.get(`movie/${movie_id}`),
-  search: term =>
+};
+
+export const searchApi = {
+  movies: term =>
     api.get('search/movie', {
       params: {
-        query: encodeURIComponent(term), // 특수문자나 스페이스 등을 인코딩 하는 과정
+        query: term, // 특수문자나 스페이스 등을 인코딩 하는 과정
       },
     }),
 };
