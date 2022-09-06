@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import StarRate from '../../../components/StarRate';
 
 function Movie({ movie, rank }) {
+  const { pathname } = useLocation();
   return (
     <Container to={`/movie/${movie.id}`}>
       <ThumbItem>
@@ -16,16 +18,12 @@ function Movie({ movie, rank }) {
       <ThumbContent>
         <strong>{movie.title}</strong>
         <span className="content_popularity">
-          <span>
-            평점 <span className="content_star">{movie.vote_average}</span>
-          </span>
-          <span>
-            인기도 <span>{movie.popularity}</span>
-          </span>
+          <StarRate vote_average={movie.vote_average} width={'25'} />
+          <span className="vote_score">{movie.vote_average}</span>
         </span>
         <span className="content_date">개봉 {movie.release_date}</span>
       </ThumbContent>
-      <RankNumber>{rank}</RankNumber>
+      {pathname === '/movie/top_rated' ? <RankNumber>{rank}</RankNumber> : ''}
     </Container>
   );
 }
@@ -104,8 +102,15 @@ const ThumbContent = styled.div`
 
   span.content_popularity {
     padding-top: 7px;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
     span {
       margin-right: 2px;
+    }
+    span.vote_score {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 
