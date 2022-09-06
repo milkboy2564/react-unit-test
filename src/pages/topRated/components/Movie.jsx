@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
 
 function Movie({ movie, rank }) {
   return (
-    <Container>
+    <Container to={`/movie/${movie.id}`}>
       <ThumbItem>
         <ImageWrapper>
           <img src={process.env.REACT_APP_IMAGE_URL + movie.poster_path} />
@@ -30,7 +30,7 @@ function Movie({ movie, rank }) {
   );
 }
 
-const Container = styled.div`
+const Container = styled(Link)`
   width: 204px;
   position: relative;
 `;
@@ -78,7 +78,7 @@ const BackInfoWrapper = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 8;
 
-    color: ${theme.WHITE_1};
+    color: ${({ theme }) => theme.WHITE_1};
     font-size: 15px;
     line-height: 1.4;
   }
@@ -111,11 +111,11 @@ const ThumbContent = styled.div`
 
   span.content_date {
     padding-top: 3px;
-    color: ${theme.GRAY_1};
+    color: ${({ theme }) => theme.GRAY_1};
   }
 
   span.content_star {
-    color: ${theme.RED};
+    color: ${({ theme }) => theme.RED};
   }
 `;
 
@@ -125,7 +125,7 @@ const RankNumber = styled.span`
   top: 5px;
   left: 13px;
   font-size: 32px;
-  color: ${theme.WHITE_1};
+  color: ${({ theme }) => theme.WHITE_1};
   text-shadow: 0 0 2px rgb(0 0 0 / 20%);
 `;
 
