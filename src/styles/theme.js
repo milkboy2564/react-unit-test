@@ -1,13 +1,13 @@
 const theme = {
-  GREEN: '#4CB481',
-  ORANGE: '#f06e00',
-  ORANGE_2: '#CF6000',
-  BLACK: '#333',
-  GRAY_1: '#666;',
-  GRAY_2: '#aaaaaa;',
-  GRAY_3: '#cecece',
-  WHITE: '#fff',
-  RED: '#fe5356',
+  BLACK: '#000;',
+  GRAY_1: '#98989C;',
+  GRAY_2: '#d8d8d8',
+  GRAY_3: '#e4e4e4',
+  GRAY_4: '#ECEDF1',
+  WHITE_1: '#fff',
+  WHITE_2: '#fafbfb',
+  RED: '#E92130',
+  BLUE: '#206DDF',
 };
 
 export default theme;
