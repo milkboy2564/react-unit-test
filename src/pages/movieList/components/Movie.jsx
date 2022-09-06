@@ -31,6 +31,30 @@ function Movie({ movie, rank }) {
 const Container = styled(Link)`
   width: 204px;
   position: relative;
+  @keyframes rotateImage {
+    0% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    10% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    33% {
+      transform: rotate(-1deg) translateY(-2%) scale(1.03);
+    }
+    66% {
+      transform: rotate(1deg) translateY(-2%) scale(1.03);
+    }
+    90% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    100% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+  }
+  &:hover {
+    animation: rotateImage 1s linear infinite;
+  }
+  transition: opacity 0.1s linear;
 `;
 
 const ThumbItem = styled.div`
@@ -45,6 +69,8 @@ const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+
   img {
     width: 100%;
     height: 100%;

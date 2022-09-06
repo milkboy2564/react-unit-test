@@ -1,7 +1,6 @@
-import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-function StarRate({ vote_average,width }) {
+function StarRate({ vote_average, width }) {
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
@@ -21,7 +20,7 @@ function StarRate({ vote_average,width }) {
   }, []);
 
   return (
-    <StarRateWrap>
+    <>
       {ratesResArr.map((item, idx) => {
         return (
           <span className="star_icon" key={`${idx}`}>
@@ -40,15 +39,13 @@ function StarRate({ vote_average,width }) {
                 d="M9,2l2.163,4.279L16,6.969,12.5,10.3l.826,4.7L9,12.779,4.674,15,5.5,10.3,2,6.969l4.837-.69Z"
                 transform="translate(-2 -2)"
               />
-              <use clipPath={`url(#${item}StarClip)`} href={`#${item}Star`} fill="#966fd6" />
+              <use clipPath={`url(#${item}StarClip)`} href={`#${item}Star`} fill="#E60813" />
             </svg>
           </span>
         );
       })}
-    </StarRateWrap>
+    </>
   );
 }
 
 export default StarRate;
-
-const StarRateWrap = styled.div``;

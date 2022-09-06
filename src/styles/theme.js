@@ -6,7 +6,7 @@ const theme = {
   GRAY_4: '#ECEDF1',
   WHITE_1: '#fff',
   WHITE_2: '#fafbfb',
-  RED: '#E92130',
+  RED: '#E60813',
   BLUE: '#206DDF',
 };
 
