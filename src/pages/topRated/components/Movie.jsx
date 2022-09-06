@@ -7,7 +7,7 @@ function Movie({ movie, rank }) {
     <Container>
       <ThumbItem>
         <ImageWrapper>
-          <img src={'https://image.tmdb.org/t/p/original' + movie.poster_path} />
+          <img src={process.env.REACT_APP_IMAGE_URL + movie.poster_path} />
         </ImageWrapper>
         <BackInfoWrapper>
           <p>{movie.overview}</p>
