@@ -7,7 +7,6 @@ import { useMemo } from 'react';
 
 function TopRated() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useScrollFetchData({
-    size: 1,
     apiKey: 'toprated',
   });
 
