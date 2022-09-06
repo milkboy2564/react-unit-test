@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import GlobalStyle from './styles/Globalstyles';
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<div>메인 페이지</div>}></Route>
         <Route path="/movie/popular" element={<div>인기영화</div>}></Route>
