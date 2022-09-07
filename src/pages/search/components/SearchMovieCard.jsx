@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
+import { movieApi } from '../../../services/api';
+import { useQuery } from 'react-query';
+import PreviewVideo from '../components/PreviewVideo';
 const genreList = {
   28: '액션',
   12: '모험',
@@ -23,36 +25,75 @@ const genreList = {
   10752: '전쟁',
   37: '서부',
 };
+let timerId = 0;
 function SearchMovieCard({ movie }) {
   const navigate = useNavigate();
-
+  const [previewOpen, setPreviewOpen] = useState(false);
+  // const [previewTimer, setPreviewTimer] = useState(0);
   const handleNavigate = () => {
     navigate(`/movie/${movie.id}`);
   };
+  const { data: videoData } = useQuery(
+    ['preview'],
+    () => {
+      return movieApi.movieVideos(movie.id);
+    },
+    {
+      staleTime: 180000,
+      enabled: !!movie.id,
+      onError: res => {
+        console.error(res);
+      },
+    }
+  );
+
+  const handlePreviewOpen = () => {
+    timerId = setInterval(() => {
+      setPreviewOpen(true);
+      clearInterval(timerId);
+    }, 3000);
+  };
+
+  const handleOnMouseOut = () => {
+    clearInterval(timerId);
+  };
+
+  const handlePreviewClose = () => {
+    setPreviewOpen(false);
+  };
 
   return (
-    <CardContainer onClick={handleNavigate}>
-      <MoviePoster src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}></MoviePoster>
-      <MovieInfoBox>
-        <MovieTitle>{movie.title}</MovieTitle>
-        <MovieTitleEng>{movie.original_title}</MovieTitleEng>
-        <MovieInfoDl>
-          <MovieInfoDt>제작</MovieInfoDt>
-          <MovieInfoDd>{movie.release_date}</MovieInfoDd>
-        </MovieInfoDl>
-        <MovieInfoDl>
-          <MovieInfoDt>장르</MovieInfoDt>
-          <MovieInfoDd>{movie.genre_ids.map(genre => `${genreList[genre]} `)}</MovieInfoDd>
-        </MovieInfoDl>
-        <MovieInfoDl>
-          <MovieInfoDt>평점</MovieInfoDt>
-          <MovieInfoDd>
-            <StarText>★</StarText>
-            {movie.vote_average}
-          </MovieInfoDd>
-        </MovieInfoDl>
-      </MovieInfoBox>
-    </CardContainer>
+    <>
+      {previewOpen && (
+        <PreviewVideo videoData={videoData} handlePreviewClose={handlePreviewClose}></PreviewVideo>
+      )}
+      <CardContainer
+        onClick={handleNavigate}
+        onMouseOver={handlePreviewOpen}
+        onMouseOut={handleOnMouseOut}
+      >
+        <MoviePoster src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}></MoviePoster>
+        <MovieInfoBox>
+          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieTitleEng>{movie.original_title}</MovieTitleEng>
+          <MovieInfoDl>
+            <MovieInfoDt>제작</MovieInfoDt>
+            <MovieInfoDd>{movie.release_date}</MovieInfoDd>
+          </MovieInfoDl>
+          <MovieInfoDl>
+            <MovieInfoDt>장르</MovieInfoDt>
+            <MovieInfoDd>{movie.genre_ids.map(genre => `${genreList[genre]} `)}</MovieInfoDd>
+          </MovieInfoDl>
+          <MovieInfoDl>
+            <MovieInfoDt>평점</MovieInfoDt>
+            <MovieInfoDd>
+              <StarText>★</StarText>
+              {movie.vote_average}
+            </MovieInfoDd>
+          </MovieInfoDl>
+        </MovieInfoBox>
+      </CardContainer>
+    </>
   );
 }
 
