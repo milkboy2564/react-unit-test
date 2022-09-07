@@ -31,13 +31,10 @@ function SearchMovieCard({ movie }) {
   };
 
   return (
-    <CardContainer>
-      <MoviePoster
-        src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}
-        onClick={handleNavigate}
-      ></MoviePoster>
+    <CardContainer onClick={handleNavigate}>
+      <MoviePoster src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}></MoviePoster>
       <MovieInfoBox>
-        <MovieTitle onClick={handleNavigate}>{movie.title}</MovieTitle>
+        <MovieTitle>{movie.title}</MovieTitle>
         <MovieTitleEng>{movie.original_title}</MovieTitleEng>
         <MovieInfoDl>
           <MovieInfoDt>제작</MovieInfoDt>
@@ -66,13 +63,13 @@ const CardContainer = styled.div`
   margin: 10px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 `;
 
 const MoviePoster = styled.img`
   width: 128px;
   height: 188px;
   border-radius: 10px;
-  cursor: pointer;
 `;
 
 const MovieInfoBox = styled.div`
@@ -86,17 +83,18 @@ const MovieInfoBox = styled.div`
 const MovieTitle = styled.h1`
   font-weight: bold;
   font-size: 18px;
-  cursor: pointer;
 `;
 
 const MovieTitleEng = styled.h2`
   font-size: 15px;
+  margin-top: 10px;
 `;
 
 const MovieInfoDl = styled.dl`
   display: flex;
   width: auto;
   height: 29px;
+  margin-top: 10px;
 `;
 
 const MovieInfoDt = styled.dt`

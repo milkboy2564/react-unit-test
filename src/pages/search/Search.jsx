@@ -24,7 +24,9 @@ function Search() {
       <ListContainer>
         <SearchResultText>
           '<SearchWord>{`${decodeURI(searchWord)}`}</SearchWord>'
-          {` 검색 결과 ${movieResult?.data?.results.length}건`}
+          {` 검색 결과 ${
+            movieResult?.data?.results.length !== undefined ? movieResult?.data?.results.length : ''
+          }건`}
         </SearchResultText>
         {movieResult?.data?.results.map(movie => (
           <SearchMovieCard key={movie.id} movie={movie}></SearchMovieCard>
