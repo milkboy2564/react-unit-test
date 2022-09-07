@@ -16,7 +16,8 @@ export const movieApi = {
   search: term =>
     api.get('search/movie', {
       params: {
-        query: encodeURIComponent(term), // 특수문자나 스페이스 등을 인코딩 하는 과정
+        query: term, // 특수문자나 스페이스 등을 인코딩 하는 과정
       },
     }),
+  genre: () => api.get('genre/movie/list'),
 };
