@@ -49,7 +49,10 @@ function SearchMovieCard({ movie }) {
         </MovieInfoDl>
         <MovieInfoDl>
           <MovieInfoDt>평점</MovieInfoDt>
-          <MovieInfoDd>{movie.vote_average}</MovieInfoDd>
+          <MovieInfoDd>
+            <StarText>★</StarText>
+            {movie.vote_average}
+          </MovieInfoDd>
         </MovieInfoDl>
       </MovieInfoBox>
     </CardContainer>
@@ -110,6 +113,15 @@ const MovieInfoDd = styled.dd`
   height: 29px;
   display: flex;
   justify-content: center;
+  align-items: center;
+`;
+
+const StarText = styled.p`
+  color: red;
+  font-size: 15px;
+  width: 20px;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 `;
 
