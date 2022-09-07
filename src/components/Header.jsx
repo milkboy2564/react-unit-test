@@ -31,9 +31,13 @@ function Header() {
     navigate('/');
   };
 
-  // TODO: 여기서 API 호출, Debounce로 이벤트 최적화가 필요한가?
   const hadleSearchValue = e => {
     setSearchValue(e.target.value);
+  };
+
+  // TODO: 여기서 API 호출
+  const handleSearchResultSubmit = e => {
+    e.preventDefault();
     console.log(searchValue);
   };
 
@@ -74,14 +78,16 @@ function Header() {
               clipRule="evenodd"
             ></path>
           </motion.svg>
-          <SearchInput
-            ref={inputRef}
-            onChange={hadleSearchValue}
-            value={searchValue}
-            animate={inputAnimation}
-            initial={{ scaleX: 0 }}
-            transition={{ type: 'linear' }}
-          ></SearchInput>
+          <SearchForm onSubmit={handleSearchResultSubmit}>
+            <SearchInput
+              ref={inputRef}
+              onChange={hadleSearchValue}
+              value={searchValue}
+              animate={inputAnimation}
+              initial={{ scaleX: 0 }}
+              transition={{ type: 'linear' }}
+            ></SearchInput>
+          </SearchForm>
         </SearchContainer>
       </NavItemContainer>
     </StyledNav>
@@ -139,18 +145,21 @@ const SearchContainer = styled.span`
   }
 `;
 
+const SearchForm = styled.form``;
+
 const SearchInput = styled(motion.input)`
-  transform-origin: right;
-  position: absolute;
-  right: 0px;
-  padding: 5px 10px;
-  padding-left: 30px;
-  z-index: -1;
+  border: 2px solid ${props => props.theme.BLACK};
+  border-radius: 5px;
   color: black;
   font-size: 16px;
   background-color: white;
-  border: 2px solid ${props => props.theme.BLACK};
-  border-radius: 5px;
+  z-index: -1;
+  padding: 5px 10px;
+  padding-left: 30px;
+  transform-origin: right;
+  position: absolute;
+  right: 0px;
+  bottom: -3px;
 `;
 
 export default Header;
