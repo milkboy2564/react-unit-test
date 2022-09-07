@@ -5,17 +5,15 @@ import MovieDetail from './pages/movieDetail/MovieDetail';
 import Search from './pages/search/Search';
 import NowPlaying from './pages/nowPlaying/NowPlaying';
 import GlobalStyle from './styles/Globalstyles';
-import Header from './components/Header';
-import { Suspense } from 'react';
-import Loading from './components/Loading';
+import Layout from './components/Layout';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
     <Router>
       <GlobalStyle />
-      <Header />
-      <Suspense fallback={<Loading />}>
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Navigate to={'/movie/popular'} />}></Route>
           <Route path="/movie/popular" element={<div>인기영화</div>}></Route>
           <Route path="/movie/upcoming" element={<UpComing />}></Route>
@@ -23,8 +21,9 @@ function App() {
           <Route path="/movie/:movie_id" element={<MovieDetail />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/movie/now_playing" element={<NowPlaying />}></Route>
-        </Routes>
-      </Suspense>
+        </Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
     </Router>
   );
 }
