@@ -30,6 +30,7 @@ function Search() {
 }
 
 const ListContainer = styled.div`
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

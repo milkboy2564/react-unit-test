@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const genreList = {
   28: '액션',
@@ -23,11 +24,20 @@ const genreList = {
   37: '서부',
 };
 function SearchMovieCard({ movie }) {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/movie/${movie.id}`);
+  };
+
   return (
     <CardContainer>
-      <MoviePoster src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}></MoviePoster>
+      <MoviePoster
+        src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}
+        onClick={handleNavigate}
+      ></MoviePoster>
       <MovieInfoBox>
-        <MovieTitle>{movie.title}</MovieTitle>
+        <MovieTitle onClick={handleNavigate}>{movie.title}</MovieTitle>
         <MovieTitleEng>{movie.original_title}</MovieTitleEng>
         <MovieInfoDl>
           <MovieInfoDt>제작</MovieInfoDt>
@@ -59,6 +69,7 @@ const MoviePoster = styled.img`
   width: 128px;
   height: 188px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 const MovieInfoBox = styled.div`
@@ -72,6 +83,7 @@ const MovieInfoBox = styled.div`
 const MovieTitle = styled.h1`
   font-weight: bold;
   font-size: 18px;
+  cursor: pointer;
 `;
 
 const MovieTitleEng = styled.h2`
