@@ -31,14 +31,14 @@ function Header() {
     navigate('/');
   };
 
-  const hadleSearchValue = e => {
+  const handleSearchValue = e => {
     setSearchValue(e.target.value);
   };
 
   // TODO: 여기서 API 호출
   const handleSearchResultSubmit = e => {
     e.preventDefault();
-    console.log(searchValue);
+    navigate(`/search?q=${searchValue}`);
   };
 
   return (
@@ -81,7 +81,7 @@ function Header() {
           <SearchForm onSubmit={handleSearchResultSubmit}>
             <SearchInput
               ref={inputRef}
-              onChange={hadleSearchValue}
+              onChange={handleSearchValue}
               value={searchValue}
               animate={inputAnimation}
               initial={{ scaleX: 0 }}
