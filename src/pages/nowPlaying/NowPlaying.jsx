@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { movieApi } from '../../services/api';
 import Card from './components/Card';
@@ -8,12 +8,17 @@ function NowPlaying() {
   const [data, setData] = useState();
   const [page, setPage] = useState(1);
   const [ref, inView] = useInView();
-
+const [isFirst,setIsFrist]=useState(true)
+  useEffect(()=>{
+    console.log(33)
+  })
   async function getData() {
     let res = '';
     if (page === 1) {
       res = await movieApi.nowPlaying(page);
       setData(res.data.results);
+      setIsFrist(false)
+
     } else {
       res = await movieApi.nowPlaying(page + 1);
       setData(current => {
@@ -23,11 +28,12 @@ function NowPlaying() {
     }
     setPage(page + 1);
   }
-
   useEffect(() => {
-    getData();
-    console.log(data);
-  }, []);
+    if(inView || isFirst){
+      getData();
+
+    }
+  }, [inView]);
 
   useEffect(() => {
     if (inView) {

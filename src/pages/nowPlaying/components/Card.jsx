@@ -47,10 +47,12 @@ const CardContainer = styled.div`
   height: 450px;
   border-radius: 30px;
   &:hover {
-    background-color: skyblue;
     opacity: 0.6;
     ${CardBackGround} {
       src: '';
+      display: none;
+    }
+    ${CardInfoBox} {
       display: none;
       width: 0px;
     }

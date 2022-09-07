@@ -13,7 +13,7 @@ function StarRate({ vote_average }) {
       idx += 1;
       starVerScore -= 14;
     }
-    tempStarRatesArr[idx] = parseInt(starVerScore);
+    tempStarRatesArr[idx] = starVerScore;
     return tempStarRatesArr;
   };
   useEffect(() => {
