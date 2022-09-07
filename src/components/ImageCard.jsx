@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-
 function ImageCard({ src, alt, width, margin }) {
   const handleOnErrorImage = event => {
-    event.target.src = '/logo512.png';
+    event.target.src = '/errImage.png';
   };
+
   return (
     <ImageBox width={width} margin={margin}>
       <img src={src} alt={alt} onError={handleOnErrorImage} />

@@ -14,6 +14,7 @@ function StarRate({ vote_average, width }) {
     tempStarRatesArr[idx] = starVerScore;
     return tempStarRatesArr;
   };
+  console.log(vote_average);
 
   useEffect(() => {
     setRatesResArr(calcStarRates);

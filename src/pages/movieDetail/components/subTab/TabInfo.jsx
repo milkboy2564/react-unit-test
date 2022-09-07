@@ -15,10 +15,10 @@ const TabInfo = ({ movieData, url, handleOnErrorImage }) => {
                 alt="series"
                 margin="20"
                 width="150"
-                src={url + belongs_to_collection.poster_path}
+                src={url + belongs_to_collection?.poster_path}
               />
               <S.CollectionName>
-                <span>{belongs_to_collection.name}</span>
+                <span>{belongs_to_collection?.name}</span>
               </S.CollectionName>
             </S.CollectionCard>
           </S.Collection>
