@@ -20,11 +20,18 @@ const DetailMain = ({ data }) => {
   } = data;
 
   const url = process.env.REACT_APP_IMAGE_URL;
-
+  const handleOnErrorImage = event => {
+    event.target.src = '/errImage.png';
+  };
   return (
     <Wrapper>
       <Poster>
-        <PosterImage src={url + poster_path} alt={`${title} 포스터`} url={url} />
+        <PosterImage
+          src={url + poster_path}
+          alt={`${title} 포스터`}
+          url={url}
+          onError={handleOnErrorImage}
+        />
       </Poster>
       <MovieIntro>
         <MovieTitle>
