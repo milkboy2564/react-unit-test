@@ -6,8 +6,8 @@ import Loading from './Loading';
 function Layout() {
   return (
     <>
+      <Header />
       <Suspense fallback={<Loading />}>
-        <Header />
         <Outlet />
       </Suspense>
     </>

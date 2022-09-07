@@ -81,21 +81,6 @@ export const CastCard = styled.div`
   display: flex;
 `;
 
-export const CastImage = styled.div`
-  max-width: 120px;
-  width: 100%;
-  aspect-ratio: 1/1.3;
-  margin-right: 30px;
-  border: 1px solid ${({ theme }) => theme.GRAY_3};
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
 export const CastInfo = styled.div`
   padding-top: 6px;
 `;
@@ -123,22 +108,6 @@ export const Collection = styled.div``;
 
 export const CollectionCard = styled.div`
   display: flex;
-`;
-
-export const CollectionImage = styled.div`
-  max-width: 150px;
-  width: 100%;
-  aspect-ratio: 1/1.3;
-  margin-right: 30px;
-  border: 1px solid ${({ theme }) => theme.GRAY_3};
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
 export const CollectionName = styled.div`
