@@ -44,7 +44,7 @@ function SearchMovieCard() {
   return (
     <CardContainer>
       <MoviePoster
-        src={`${process.env.MOVIE_IMAGE_URL}/bZLrpWM065h5bu1msUcPmLFsHBe.jpg`}
+        src={`${process.env.REACT_APP_IMAGE_URL}/bZLrpWM065h5bu1msUcPmLFsHBe.jpg`}
       ></MoviePoster>
       <MovieInfoBox>
         <MovieTitle>{mockData.title}</MovieTitle>

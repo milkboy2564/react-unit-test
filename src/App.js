@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchMovieCard from './pages/search/compontents/SearchMovieCard';
 import GlobalStyle from './styles/Globalstyles';
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
         <Route path="/movie/upcoming" element={<div>개봉 예정 영화</div>}></Route>
         <Route path="/movie/now_playing" element={<div>현재 상영 영화</div>}></Route>
         <Route path="/movie/:movie_id" element={<div>영화 상세 페이지</div>}></Route>
-        <Route path="/search" element={<SearchMovieCard></SearchMovieCard>}></Route>
       </Routes>
     </Router>
   );
