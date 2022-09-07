@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { AiFillStar } from 'react-icons/ai';
 const IMAGE_URL = process.env.REACT_APP_IMAGE_URL;
 
-function MovieCard({ data }) {
-  const { results: movies } = data.data;
-  console.log(movies);
+function MovieCard({ page }) {
+  const { results: movies } = page.data;
   return (
     <MovieList>
-      {movies.map(({ id, poster_path, title, vote_average }) => (
+      {movies?.map(({ id, poster_path, title, vote_average }) => (
         <Movie key={id}>
           <ImgWrapper>
             <MovieImg src={`${IMAGE_URL}${poster_path}`} alt="movie poster" />
@@ -20,7 +19,6 @@ function MovieCard({ data }) {
               {vote_average}
             </MovieVote>
           </InfoWrapper>
-
         </Movie>
       ))}
     </MovieList>
@@ -88,10 +86,11 @@ const MovieTitle = styled.p`
 `;
 
 const MovieVote = styled.span`
-    display: flex;
-    align-items: center;
-    line-height: 120%;
-    svg{
-        color : ${({theme})=> theme.RED}
-    }
+  display: flex;
+  align-items: center;
+  line-height: 120%;
+  svg {
+    color: ${({ theme }) => theme.RED};
+  }
 `;
+
