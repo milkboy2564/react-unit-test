@@ -1,17 +1,20 @@
 import styled from 'styled-components';
-import Layout from './components/Layout';
 import useScrollFetchData from './hook/useScrollFetchData';
 import Movie from './components/Movie';
 import useInterSect from './hook/useInterSect';
 import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function TopRated() {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useScrollFetchData({
-    apiKey: 'toprated',
+function MoviePage() {
+  const { pathname } = useLocation();
+
+  const { data, hasNextPage, isFetching, fetchNextPage, isSuccess } = useScrollFetchData({
+    apiKey: pathname.split('movie/')[1],
   });
 
   const pageDatas = useMemo(
     () => (data ? data.pages.flatMap(({ data }) => data.results) : []),
+
     [data]
   );
 
@@ -27,29 +30,27 @@ function TopRated() {
   };
 
   return (
-    <Layout>
-      <PageContainer>
-        {pageDatas.length &&
-          pageDatas.map((item, index) => <Movie key={item.id} movie={item} rank={index + 1} />)}
-        <Target ref={ref} />
-        <UpButton onClick={onUpClick}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
-            />
-          </svg>
-        </UpButton>
-      </PageContainer>
-    </Layout>
+    <PageContainer>
+      {isSuccess &&
+        pageDatas.map((item, index) => <Movie key={item.id} movie={item} rank={index + 1} />)}
+      <Target ref={ref} />
+      <UpButton onClick={onUpClick}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
+          />
+        </svg>
+      </UpButton>
+    </PageContainer>
   );
 }
 
@@ -78,4 +79,4 @@ const UpButton = styled.button`
   }
 `;
 
-export default TopRated;
+export default MoviePage;
