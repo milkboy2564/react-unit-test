@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
-function StarRate({ vote_average }) {
-  const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
+function StarRate({ vote_average,width }) {
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
@@ -16,17 +15,19 @@ function StarRate({ vote_average }) {
     tempStarRatesArr[idx] = starVerScore;
     return tempStarRatesArr;
   };
+
   useEffect(() => {
     setRatesResArr(calcStarRates);
   }, []);
+
   return (
     <StarRateWrap>
-      {STAR_IDX_ARR.map((item, idx) => {
+      {ratesResArr.map((item, idx) => {
         return (
-          <span className="star_icon" key={`${item}_${idx}`}>
+          <span className="star_icon" key={`${idx}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="25"
+              width={width}
               height="40"
               viewBox="0 0 14 13"
               fill="#cacaca"

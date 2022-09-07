@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import StarRate from './StarRate';
+import StarRate from '../../../components/StarRate';
 
 function Card({ data }) {
   const ImgUrl = 'https://image.tmdb.org/t/p/w500';
@@ -20,7 +20,7 @@ function Card({ data }) {
         </CardDetail>
         <CardInfoBox>
           <CardTitle>{data.title}</CardTitle>
-          <StarRate vote_average={data.vote_average} />
+          <StarRate vote_average={data.vote_average} width={"25"}/>
 
           <CardVote>{data.vote_average}</CardVote>
 

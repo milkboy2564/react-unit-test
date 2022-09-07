@@ -33,21 +33,16 @@ function NowPlaying() {
     }
   }, [inView]);
 
-  useEffect(() => {
-    if (inView) {
-      getData();
-    }
-  }, [inView]);
-
   return (
     <Wrap>
       {data?.map(data => {
         return (
-          <div key={data.id} ref={ref}>
+          <div key={data.id} >
             <Card key={data.id} data={data}></Card>
           </div>
         );
       })}
+      <div ref={ref}/>
     </Wrap>
   );
 }
