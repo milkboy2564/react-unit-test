@@ -8,14 +8,12 @@ function StarRate({ vote_average }) {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
     let starVerScore = (vote_average * 70) / 10;
     let idx = 0;
-
     while (starVerScore > 14) {
       tempStarRatesArr[idx] = 14;
       idx += 1;
       starVerScore -= 14;
     }
     tempStarRatesArr[idx] = parseInt(starVerScore);
-    console.log(tempStarRatesArr);
     return tempStarRatesArr;
   };
   useEffect(() => {
@@ -28,8 +26,8 @@ function StarRate({ vote_average }) {
           <span className="star_icon" key={`${item}_${idx}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="39"
+              width="25"
+              height="40"
               viewBox="0 0 14 13"
               fill="#cacaca"
             >

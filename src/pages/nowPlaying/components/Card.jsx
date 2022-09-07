@@ -4,9 +4,7 @@ import StarRate from './StarRate';
 
 function Card({ data }) {
   const ImgUrl = 'https://image.tmdb.org/t/p/w500';
-  useEffect(() => {
-    console.log(data);
-  }, []);
+
   return (
     <CardContainer>
       <>
@@ -16,10 +14,8 @@ function Card({ data }) {
           src={ImgUrl + data.poster_path}
         ></CardBackGround>
         <CardInfoBox>
-          <CardTitle>
-            {data.title.length >= 30 ? data.title.slice(0, 30) + '...' : data.title}
-          </CardTitle>
-          <StarRate vote_average={data.vote_average} id={data.id} />
+          <CardTitle>{data.title}</CardTitle>
+          <StarRate vote_average={data.vote_average} />
 
           <CardVote>{data.vote_average}</CardVote>
 
