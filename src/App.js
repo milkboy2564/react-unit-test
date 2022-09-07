@@ -3,7 +3,6 @@ import MovieDetail from './pages/movieDetail/MovieDetail';
 import Header from './components/Header';
 import GlobalStyle from './styles/Globalstyles';
 
-import MovieDetail from './pages/movieDetail/MovieDetail';
 function App() {
   return (
     <Router>

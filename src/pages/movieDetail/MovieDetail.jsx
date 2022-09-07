@@ -51,10 +51,11 @@ function MovieDetail() {
 
   return (
     <Wrap>
-      <DetailMain />
       {movieData && videoData && creditData && (
-        <DetailSub movieData={movieData.data} videoData={videoData} creditData={creditData} />
-
+        <>
+          <DetailMain data={movieData.data} />
+          <DetailSub movieData={movieData.data} videoData={videoData} creditData={creditData} />
+        </>
       )}
     </Wrap>
   );
