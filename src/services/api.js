@@ -14,6 +14,8 @@ export const movieApi = {
   popular: () => api.get('movie/popular'),
   toprated: page => api.get(`movie/top_rated?page=${page}`),
   movieDetail: movie_id => api.get(`movie/${movie_id}`),
+  movieCredits: movie_id => api.get(`movie/${movie_id}/credits`),
+  movieVideos: movie_id => api.get(`movie/${movie_id}/videos`),
 };
 
 export const searchApi = {
@@ -23,4 +25,5 @@ export const searchApi = {
         query: term, // 특수문자나 스페이스 등을 인코딩 하는 과정
       },
     }),
+  genre: () => api.get('genre/movie/list'),
 };
