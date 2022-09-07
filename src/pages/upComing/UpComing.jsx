@@ -8,8 +8,8 @@ function UpComing() {
   const { isLoading, data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery('upcoming', ({ pageParam = 1 }) => movieApi.upcoming(pageParam), {
       getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length + 1
-        return nextPage >= lastPage.data.total_pages ? undefined : nextPage
+        const nextPage = allPages.length + 1;
+        return nextPage >= lastPage.data.total_pages ? undefined : nextPage;
       },
     });
 
@@ -35,14 +35,16 @@ function UpComing() {
 
   return (
     <Main>
-    <Section>
-      <SectionTitle>상영예정작</SectionTitle>
-      {isLoading ? <div>로딩중 표시</div> : isSuccess && (
-          data.pages.map(page=> <MovieCard key={page.data.page} page={page}/>)
-      )}
-    </Section>
-    <Observer ref={loadMoreRef}>{isFetchingNextPage && hasNextPage ? '로딩중' : ''}</Observer>
-  </Main>
+      <Section>
+        <SectionTitle>상영예정작</SectionTitle>
+        {isLoading ? (
+          <div>로딩중 표시</div>
+        ) : (
+          isSuccess && data.pages.map(page => <MovieCard key={page.data.page} page={page} />)
+        )}
+      </Section>
+      <Observer ref={loadMoreRef}>{isFetchingNextPage && hasNextPage ? '로딩중' : ''}</Observer>
+    </Main>
   );
 }
 
