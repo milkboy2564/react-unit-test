@@ -10,7 +10,11 @@ function MovieCard({ page }) {
       {movies?.map(({ id, poster_path, title, vote_average }) => (
         <Movie key={id}>
           <ImgWrapper>
-            <MovieImg src={`${IMAGE_URL}${poster_path}`} alt="movie poster" />
+            {poster_path ? (
+              <MovieImg src={`${IMAGE_URL}${poster_path}`} alt="movie poster" />
+            ) : (
+              <DefaultImg />
+            )}
           </ImgWrapper>
           <InfoWrapper>
             <MovieTitle className="title">{title}</MovieTitle>
@@ -94,3 +98,7 @@ const MovieVote = styled.span`
   }
 `;
 
+const DefaultImg = styled.div`
+  height: 298px;
+  background-color: ${({ theme }) => theme.GRAY_1};
+`;
