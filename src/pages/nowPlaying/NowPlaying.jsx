@@ -6,9 +6,7 @@ import { useInView } from 'react-intersection-observer';
 
 function NowPlaying() {
   const [data, setData] = useState();
-  const [count, setCount] = useState(20);
   const [page, setPage] = useState(1);
-  const [scrolly, setScrollY] = useState();
   const [ref, inView] = useInView();
 
   async function getData() {
@@ -19,24 +17,21 @@ function NowPlaying() {
     } else {
       res = await movieApi.nowPlaying(page + 1);
       setData(current => {
-        console.log(current);
-        console.log(res);
         const tempData = [...current, ...res.data.results];
         return tempData;
       });
     }
-
     setPage(page + 1);
   }
 
   useEffect(() => {
     getData();
+    console.log(data);
   }, []);
 
   useEffect(() => {
     if (inView) {
       getData();
-      console.log(data);
     }
   }, [inView]);
 
