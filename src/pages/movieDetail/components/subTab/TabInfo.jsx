@@ -1,3 +1,4 @@
+import ImageCard from '../../../../components/ImageCard';
 import * as S from './SubTab.styles';
 const TabInfo = ({ movieData, url, handleOnErrorImage }) => {
   const { overview, production_companies, belongs_to_collection } = movieData;
@@ -10,15 +11,14 @@ const TabInfo = ({ movieData, url, handleOnErrorImage }) => {
         <S.SectionContent>
           <S.Collection>
             <S.CollectionCard>
-              <S.CollectionImage>
-                <img
-                  src={url + belongs_to_collection.poster_path}
-                  alt="company"
-                  onError={handleOnErrorImage}
-                />
-              </S.CollectionImage>
+              <ImageCard
+                alt="series"
+                margin="20"
+                width="150"
+                src={url + belongs_to_collection?.poster_path}
+              />
               <S.CollectionName>
-                <span>{belongs_to_collection.name}</span>
+                <span>{belongs_to_collection?.name}</span>
               </S.CollectionName>
             </S.CollectionCard>
           </S.Collection>

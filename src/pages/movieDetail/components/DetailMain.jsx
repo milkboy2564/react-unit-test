@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/theme';
-
+import StarRate from '../../../components/StarRate';
+import ImageCard from '../../../components/ImageCard';
 const DetailMain = ({ data }) => {
   const {
     title,
@@ -13,40 +14,32 @@ const DetailMain = ({ data }) => {
     adult,
     runtime,
     vote_average,
-    popularity,
     tagline,
   } = data;
 
   const url = process.env.REACT_APP_IMAGE_URL;
-  const handleOnErrorImage = event => {
-    event.target.src = '/errImage.png';
-  };
 
-  const MOVIE_SIMPLE_INFO = [
-    {
-      name: '개봉 일자',
-      contents: release_date,
-    },
-    {
-      name: '장르',
-      contents: genres,
-    },
-    {
-      name: '국가',
-      contents: production_countries,
-    },
-    { name: '러닝타임', contents: runtime },
-  ];
-  console.log(MOVIE_SIMPLE_INFO);
+  // const MOVIE_SIMPLE_INFO = [
+  //   {
+  //     name: '개봉 일자',
+  //     contents: release_date,
+  //   },
+  //   {
+  //     name: '장르',
+  //     contents: genres,
+  //   },
+  //   {
+  //     name: '국가',
+  //     contents: production_countries,
+  //   },
+  //   { name: '러닝타임', contents: runtime },
+  //   { name: '평점', contents: vote_average },
+  // ];
+
   return (
     <Wrapper>
       <Poster>
-        <PosterImage
-          src={url + poster_path}
-          alt={`${title} 포스터`}
-          url={url}
-          onError={handleOnErrorImage}
-        />
+        {poster_path && <ImageCard src={url + poster_path} alt={`${title} 포스터`} url={url} />}
       </Poster>
       <MovieIntro>
         <MovieTitle>
@@ -86,13 +79,9 @@ const DetailMain = ({ data }) => {
           <InnerContenst>
             <InfoList>
               <MovieInfoTitle>평점</MovieInfoTitle>
-              <MovieInfoContents style={{ marginLeft: '6px' }}>
-                {vote_average.toFixed(0)}
+              <MovieInfoContents>
+                <StarRate vote_average={vote_average} width={16}></StarRate>
               </MovieInfoContents>
-            </InfoList>
-            <InfoList>
-              <MovieInfoTitle>인기도</MovieInfoTitle>
-              <MovieInfoContents>{popularity}</MovieInfoContents>
             </InfoList>
           </InnerContenst>
         </DetailContents>
@@ -114,10 +103,7 @@ const Poster = styled.div`
   margin-right: 40px;
   border-radius: 30px;
 `;
-const PosterImage = styled.img`
-  width: 100%;
-  border-radius: 8px;
-`;
+
 const MovieTag = styled.div`
   margin-top: 14px;
   width: 100%;
@@ -165,8 +151,8 @@ const InnerContenst = styled.div`
 const InfoList = styled.dl`
   display: flex;
   align-items: center;
-  line-height: 27px;
   font-size: 14px;
+  margin-bottom: 10px;
 `;
 const MovieInfoTitle = styled.dt`
   max-width: 100px;
@@ -177,6 +163,7 @@ const MovieInfoTitle = styled.dt`
 `;
 const MovieInfoContents = styled.dd`
   padding-right: 4px;
+  margin-left: 6px;
   word-break: break-all;
   word-wrap: break-word;
 `;

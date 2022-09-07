@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import StarRate from '../../../components/StarRate';
 
 function Movie({ movie, rank }) {
+  const { pathname } = useLocation();
   return (
     <Container to={`/movie/${movie.id}`}>
       <ThumbItem>
@@ -16,16 +18,12 @@ function Movie({ movie, rank }) {
       <ThumbContent>
         <strong>{movie.title}</strong>
         <span className="content_popularity">
-          <span>
-            평점 <span className="content_star">{movie.vote_average}</span>
-          </span>
-          <span>
-            인기도 <span>{movie.popularity}</span>
-          </span>
+          <StarRate vote_average={movie.vote_average} width={'25'} />
+          <span className="vote_score">{movie.vote_average}</span>
         </span>
         <span className="content_date">개봉 {movie.release_date}</span>
       </ThumbContent>
-      <RankNumber>{rank}</RankNumber>
+      {pathname === '/movie/top_rated' ? <RankNumber>{rank}</RankNumber> : ''}
     </Container>
   );
 }
@@ -33,6 +31,30 @@ function Movie({ movie, rank }) {
 const Container = styled(Link)`
   width: 204px;
   position: relative;
+  @keyframes rotateImage {
+    0% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    10% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    33% {
+      transform: rotate(-1deg) translateY(-2%) scale(1.03);
+    }
+    66% {
+      transform: rotate(1deg) translateY(-2%) scale(1.03);
+    }
+    90% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+    100% {
+      transform: rotate(0) translateY(0) scale(1);
+    }
+  }
+  &:hover {
+    animation: rotateImage 1s linear infinite;
+  }
+  transition: opacity 0.1s linear;
 `;
 
 const ThumbItem = styled.div`
@@ -47,6 +69,8 @@ const ImageWrapper = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+
   img {
     width: 100%;
     height: 100%;
@@ -104,8 +128,15 @@ const ThumbContent = styled.div`
 
   span.content_popularity {
     padding-top: 7px;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5em;
     span {
       margin-right: 2px;
+    }
+    span.vote_score {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 
