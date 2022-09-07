@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MovieDetail from './pages/movieDetail/MovieDetail';
 import Header from './components/Header';
+import Search from './pages/search/Search';
 import GlobalStyle from './styles/Globalstyles';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <Route path="/movie/upcoming" element={<div>개봉 예정 영화</div>}></Route>
         <Route path="/movie/now_playing" element={<div>현재 상영 영화</div>}></Route>
         <Route path="/movie/:movie_id" element={<MovieDetail />}></Route>
-        <Route path="/search" element={<div>검색</div>}></Route>
+        <Route path="/search" element={<Search />}></Route>
       </Routes>
     </Router>
   );

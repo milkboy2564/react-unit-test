@@ -24,4 +24,5 @@ export const searchApi = {
         query: term, // 특수문자나 스페이스 등을 인코딩 하는 과정
       },
     }),
+  genre: () => api.get('genre/movie/list'),
 };
