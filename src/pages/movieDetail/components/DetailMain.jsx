@@ -19,12 +19,12 @@ const DetailMain = ({ data }) => {
     tagline,
   } = data;
 
-  // const url = process.env.REACT_APP_IMAGE_URL;
+  const url = process.env.REACT_APP_IMAGE_URL;
 
   return (
     <Wrapper>
       <Poster>
-        <PosterImage src={`https://image.tmdb.org/t/p/original${poster_path}`} />
+        <PosterImage src={url + poster_path} alt={`${title} 포스터`} url={url} />
       </Poster>
       <MovieIntro>
         <MovieTitle>
@@ -68,7 +68,7 @@ const DetailMain = ({ data }) => {
                 <Rating
                   name="read-only"
                   style={{ fontSize: '16px' }}
-                  value={vote_average}
+                  value={vote_average / 2}
                   readOnly
                 />
               </Stack>
