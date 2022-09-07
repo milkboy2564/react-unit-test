@@ -13,7 +13,10 @@ export const movieApi = {
   upcoming: () => api.get('movie/upcoming'),
   popular: () => api.get('movie/popular'),
   movieDetail: movie_id => api.get(`movie/${movie_id}`),
-  search: term =>
+};
+
+export const searchApi = {
+  movies: term =>
     api.get('search/movie', {
       params: {
         query: term, // 특수문자나 스페이스 등을 인코딩 하는 과정
