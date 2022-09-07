@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/theme';
-import Rating from '@mui/material/Rating';
-import Stack from '@mui/material/Stack';
 
 const DetailMain = ({ data }) => {
   const {
@@ -23,6 +21,23 @@ const DetailMain = ({ data }) => {
   const handleOnErrorImage = event => {
     event.target.src = '/errImage.png';
   };
+
+  const MOVIE_SIMPLE_INFO = [
+    {
+      name: '개봉 일자',
+      contents: release_date,
+    },
+    {
+      name: '장르',
+      contents: genres,
+    },
+    {
+      name: '국가',
+      contents: production_countries,
+    },
+    { name: '러닝타임', contents: runtime },
+  ];
+  console.log(MOVIE_SIMPLE_INFO);
   return (
     <Wrapper>
       <Poster>
@@ -71,14 +86,6 @@ const DetailMain = ({ data }) => {
           <InnerContenst>
             <InfoList>
               <MovieInfoTitle>평점</MovieInfoTitle>
-              <Stack spacing={1}>
-                <Rating
-                  name="read-only"
-                  style={{ fontSize: '16px' }}
-                  value={vote_average / 2}
-                  readOnly
-                />
-              </Stack>
               <MovieInfoContents style={{ marginLeft: '6px' }}>
                 {vote_average.toFixed(0)}
               </MovieInfoContents>
@@ -113,7 +120,7 @@ const PosterImage = styled.img`
 `;
 const MovieTag = styled.div`
   margin-top: 14px;
-  width: 40%;
+  width: 100%;
   animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
