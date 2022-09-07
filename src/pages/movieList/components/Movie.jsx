@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import ImageCard from '../../../components/ImageCard';
 import StarRate from '../../../components/StarRate';
 
 function Movie({ movie, rank }) {
@@ -9,7 +10,11 @@ function Movie({ movie, rank }) {
     <Container to={`/movie/${movie.id}`}>
       <ThumbItem>
         <ImageWrapper>
-          <img src={process.env.REACT_APP_IMAGE_URL + movie.poster_path} />
+          <ImageCard
+            src={process.env.REACT_APP_IMAGE_URL + movie.poster_path}
+            alt={movie.id}
+            width={204}
+          ></ImageCard>
         </ImageWrapper>
         <BackInfoWrapper>
           <p>{movie.overview}</p>
