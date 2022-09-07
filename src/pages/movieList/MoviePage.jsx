@@ -28,7 +28,9 @@ function MoviePage() {
   return (
     <PageContainer>
       {isSuccess &&
-        pageDatas.map((item, index) => <Movie key={item.id} movie={item} rank={index + 1} />)}
+        pageDatas.map((item, index) => (
+          <Movie key={item.id + index} movie={item} rank={index + 1} />
+        ))}
       <Target ref={ref} />
     </PageContainer>
   );

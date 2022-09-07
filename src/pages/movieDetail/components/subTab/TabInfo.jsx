@@ -33,7 +33,11 @@ const TabInfo = ({ movieData, url, handleOnErrorImage }) => {
                 <S.ProductionName>{company.name}</S.ProductionName>
                 {company.logo_path && (
                   <S.ProductionLogo>
-                    <img src={url + company.logo_path} alt="company" onError={handleOnErrorImage} />
+                    <img
+                      src={url + company?.logo_path}
+                      alt="company"
+                      onError={handleOnErrorImage}
+                    />
                   </S.ProductionLogo>
                 )}
               </S.ProductionCard>

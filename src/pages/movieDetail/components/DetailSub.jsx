@@ -6,7 +6,7 @@ import TabMedia from './subTab/TabMedia';
 
 const url = process.env.REACT_APP_IMAGE_URL;
 const handleOnErrorImage = event => {
-  event.target.src = '/logo512.png';
+  event.target.src = '/errImage.png';
 };
 
 function DetailSub({ movieData, videoData, creditData }) {
