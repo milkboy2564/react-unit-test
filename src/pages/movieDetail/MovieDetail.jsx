@@ -54,6 +54,7 @@ function MovieDetail() {
       <DetailMain />
       {movieData && videoData && creditData && (
         <DetailSub movieData={movieData.data} videoData={videoData} creditData={creditData} />
+
       )}
     </Wrap>
   );
