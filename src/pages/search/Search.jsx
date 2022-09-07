@@ -20,12 +20,18 @@ function Search() {
   );
 
   return (
-    <ListContainer>
-      {movieResult?.data?.results.map(movie => (
-        <SearchMovieCard key={movie.id} movie={movie}></SearchMovieCard>
-      ))}
-      {movieResult?.data?.results.length % 2 !== 0 && <DummyCard />}
-    </ListContainer>
+    <>
+      <ListContainer>
+        <SearchResultText>
+          '<SearchWord>{`${decodeURI(searchWord)}`}</SearchWord>'
+          {` 검색 결과 ${movieResult?.data?.results.length}건`}
+        </SearchResultText>
+        {movieResult?.data?.results.map(movie => (
+          <SearchMovieCard key={movie.id} movie={movie}></SearchMovieCard>
+        ))}
+        {movieResult?.data?.results.length % 2 !== 0 && <DummyCard />}
+      </ListContainer>
+    </>
   );
 }
 
@@ -40,6 +46,21 @@ const DummyCard = styled.div`
   width: 500px;
   height: 188px;
   margin: 10px;
+`;
+
+const SearchResultText = styled.p`
+  width: 1000px;
+  height: 100px;
+  font-size: 34px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+`;
+
+const SearchWord = styled.p`
+  font-size: 34px;
+  font-weight: bold;
+  color: red;
 `;
 
 export default Search;
