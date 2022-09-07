@@ -47,22 +47,26 @@ function SearchMovieCard({ movie }) {
 }
 
 const CardContainer = styled.div`
-  width: 350px;
+  width: 500px;
   height: 188px;
   display: flex;
-  justify-content: space-between;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 `;
 
 const MoviePoster = styled.img`
   width: 128px;
   height: 188px;
+  border-radius: 10px;
 `;
 
 const MovieInfoBox = styled.div`
-  width: 172px;
+  width: auto;
   height: 188px;
   display: flex;
   flex-direction: column;
+  margin-left: 40px;
 `;
 
 const MovieTitle = styled.h1`
@@ -76,7 +80,7 @@ const MovieTitleEng = styled.h2`
 
 const MovieInfoDl = styled.dl`
   display: flex;
-  width: 172px;
+  width: auto;
   height: 29px;
 `;
 
@@ -90,7 +94,7 @@ const MovieInfoDt = styled.dt`
 `;
 
 const MovieInfoDd = styled.dd`
-  width: 138px;
+  width: auto;
   height: 29px;
   display: flex;
   justify-content: center;
