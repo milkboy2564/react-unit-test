@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { movieApi } from '../../../services/api';
 import { useQuery } from 'react-query';
 import PreviewVideo from '../components/PreviewVideo';
-const genreList = {
+
+const GENRE_LIST = {
   28: '액션',
   12: '모험',
   16: '애니메이션',
@@ -25,15 +26,18 @@ const genreList = {
   10752: '전쟁',
   37: '서부',
 };
-let timerId = 0;
+
 function SearchMovieCard({ movie }) {
+  let timerId = 0;
   const navigate = useNavigate();
   const [previewOpen, setPreviewOpen] = useState(false);
   const [mousePreview, setMousePreview] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   const handleNavigate = () => {
     navigate(`/movie/${movie.id}`);
   };
+
   const { data: videoData } = useQuery(
     ['preview' + movie.id],
     () => {
@@ -48,6 +52,7 @@ function SearchMovieCard({ movie }) {
       },
     }
   );
+
   const handlePreviewOpen = e => {
     if (videoData.data.results.length > 0) {
       setMousePos(cur => ({ x: e.clientX, y: e.clientY }));
@@ -83,7 +88,13 @@ function SearchMovieCard({ movie }) {
         onMouseOver={handlePreviewOpen}
         onMouseOut={handleOnMouseOut}
       >
-        <MoviePoster src={`${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`}></MoviePoster>
+        <MoviePoster
+          src={
+            movie.poster_path
+              ? `${process.env.REACT_APP_IMAGE_URL}${movie.poster_path}`
+              : require('../../../assets/images/errImage.png')
+          }
+        ></MoviePoster>
         <MovieInfoBox>
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieTitleEng>{movie.original_title}</MovieTitleEng>
@@ -93,7 +104,7 @@ function SearchMovieCard({ movie }) {
           </MovieInfoDl>
           <MovieInfoDl>
             <MovieInfoDt>장르</MovieInfoDt>
-            <MovieInfoDd>{movie.genre_ids.map(genre => `${genreList[genre]} `)}</MovieInfoDd>
+            <MovieInfoDd>{movie.genre_ids.map(genre => `${GENRE_LIST[genre]} `)}</MovieInfoDd>
           </MovieInfoDl>
           <MovieInfoDl>
             <MovieInfoDt>평점</MovieInfoDt>

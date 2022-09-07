@@ -7,8 +7,8 @@ import { useQuery } from 'react-query';
 
 function Search() {
   const location = useLocation();
-
   const searchWord = location.search.slice(3);
+
   const { data: movieResult } = useQuery(
     ['search', searchWord],
     () => searchApi.movies(decodeURI(searchWord)),
