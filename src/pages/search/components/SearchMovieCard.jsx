@@ -29,32 +29,38 @@ let timerId = 0;
 function SearchMovieCard({ movie }) {
   const navigate = useNavigate();
   const [previewOpen, setPreviewOpen] = useState(false);
-  // const [previewTimer, setPreviewTimer] = useState(0);
+  const [mousePreview, setMousePreview] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const handleNavigate = () => {
     navigate(`/movie/${movie.id}`);
   };
   const { data: videoData } = useQuery(
-    ['preview'],
+    ['preview' + movie.id],
     () => {
       return movieApi.movieVideos(movie.id);
     },
     {
       staleTime: 180000,
       enabled: !!movie.id,
+      suspense: true,
       onError: res => {
         console.error(res);
       },
     }
   );
-
-  const handlePreviewOpen = () => {
-    timerId = setInterval(() => {
-      setPreviewOpen(true);
-      clearInterval(timerId);
-    }, 3000);
+  const handlePreviewOpen = e => {
+    if (videoData.data.results.length > 0) {
+      setMousePos(cur => ({ x: e.clientX, y: e.clientY }));
+      setMousePreview(true);
+      timerId = setInterval(() => {
+        setPreviewOpen(true);
+        clearInterval(timerId);
+      }, 3000);
+    }
   };
 
   const handleOnMouseOut = () => {
+    setMousePreview(false);
     clearInterval(timerId);
   };
 
@@ -63,9 +69,14 @@ function SearchMovieCard({ movie }) {
   };
 
   return (
-    <>
+    <div>
       {previewOpen && (
         <PreviewVideo videoData={videoData} handlePreviewClose={handlePreviewClose}></PreviewVideo>
+      )}
+      {mousePreview && (
+        <PreviewText style={{ position: 'absolute', left: mousePos.x, top: mousePos.y }}>
+          미리보기
+        </PreviewText>
       )}
       <CardContainer
         onClick={handleNavigate}
@@ -93,11 +104,12 @@ function SearchMovieCard({ movie }) {
           </MovieInfoDl>
         </MovieInfoBox>
       </CardContainer>
-    </>
+    </div>
   );
 }
 
 const CardContainer = styled.div`
+  position: relative;
   width: 500px;
   height: 188px;
   display: flex;
@@ -162,6 +174,14 @@ const StarText = styled.p`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+`;
+
+const PreviewText = styled.div`
+  position: absolute;
+  width: 70px;
+  z-index: 1;
+  pointer-events: none;
+  font-weight: bold;
 `;
 
 export default SearchMovieCard;
