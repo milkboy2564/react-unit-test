@@ -7,7 +7,7 @@ import DetailSub from './components/DetailSub';
 
 function MovieDetail() {
   const { movie_id } = useParams();
-  const { data } = useQuery(['detail'], () => movieApi.movieDetail(movie_id), {});
+  const { data: movieData } = useQuery(['detail'], () => movieApi.movieDetail(movie_id), {});
 
   const { data: videoData } = useQuery(['videos'], () => movieApi.movieVideos(movie_id), {});
 
@@ -16,8 +16,8 @@ function MovieDetail() {
   return (
     <Wrap>
       <DetailMain />
-      {data && videoData && creditData && (
-        <DetailSub data={data.data} videoData={videoData} creditData={creditData} />
+      {movieData && videoData && creditData && (
+        <DetailSub movieData={movieData.data} videoData={videoData} creditData={creditData} />
       )}
     </Wrap>
   );
