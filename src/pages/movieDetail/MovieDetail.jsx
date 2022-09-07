@@ -9,12 +9,13 @@ function MovieDetail() {
   const { movie_id } = useParams();
   const { data: movieData } = useQuery(
     ['detail'],
-    async () => {
-      return await movieApi.movieDetail(movie_id);
+    () => {
+      return movieApi.movieDetail(movie_id);
     },
     {
-      staleTime: 20000,
+      staleTime: 180000,
       enabled: !!movie_id,
+      suspense: true,
       onError: res => {
         console.error(res);
       },
@@ -23,12 +24,13 @@ function MovieDetail() {
 
   const { data: videoData } = useQuery(
     ['videos'],
-    async () => {
-      return await movieApi.movieVideos(movie_id);
+    () => {
+      return movieApi.movieVideos(movie_id);
     },
     {
-      staleTime: 20000,
+      staleTime: 180000,
       enabled: !!movie_id,
+      suspense: true,
       onError: res => {
         console.error(res);
       },
@@ -37,12 +39,13 @@ function MovieDetail() {
 
   const { data: creditData } = useQuery(
     ['credits'],
-    async () => {
-      return await movieApi.movieCredits(movie_id);
+    () => {
+      return movieApi.movieCredits(movie_id);
     },
     {
-      staleTime: 20000,
+      staleTime: 180000,
       enabled: !!movie_id,
+      suspense: true,
       onError: res => {
         console.error(res);
       },

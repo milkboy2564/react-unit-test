@@ -1,3 +1,4 @@
+import ImageCard from '../../../../components/ImageCard';
 import * as S from './SubTab.styles';
 
 const TabCast = ({ creditData, url, handleOnErrorImage }) => {
@@ -12,9 +13,7 @@ const TabCast = ({ creditData, url, handleOnErrorImage }) => {
           <S.Cast>
             {MAIN_CAST.map(figure => (
               <S.CastCard key={figure.cast_id}>
-                <S.CastImage>
-                  <img src={url + figure.profile_path} alt="figure" onError={handleOnErrorImage} />
-                </S.CastImage>
+                <ImageCard alt="figure" margin="30" src={url + figure.profile_path} width="120" />
                 <S.CastInfo>
                   <S.Name>{figure.name}</S.Name>
                   <S.Character>{figure.character} 역</S.Character>
