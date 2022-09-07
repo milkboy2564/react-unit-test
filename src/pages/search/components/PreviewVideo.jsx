@@ -8,7 +8,7 @@ function PreviewVideo({ handlePreviewClose, videoData }) {
   return (
     <PreviewContainer onClick={handlePreviewClose}>
       <Video
-        src={`http://www.youtube.com/embed/${results[0].key}?autoplay=1&mute=1`}
+        src={`https://www.youtube.com/embed/${results[0].key}?autoplay=1&mute=1`}
         frameBorder="0"
       ></Video>
     </PreviewContainer>

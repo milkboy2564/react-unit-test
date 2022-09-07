@@ -19,7 +19,7 @@ const TabMedia = ({ movieData, videoData, url, handleOnErrorImage }) => {
                 type="text/html"
                 width="1100"
                 height="580"
-                src={`http://www.youtube.com/embed/${TRAILER[0].key}?autoplay=1&mute=1`}
+                src={`https://www.youtube.com/embed/${TRAILER[0].key}?autoplay=1&mute=1`}
                 allow="autoplay"
                 frameBorder="0"
               ></iframe>
@@ -31,12 +31,16 @@ const TabMedia = ({ movieData, videoData, url, handleOnErrorImage }) => {
         <S.SectionTitle>포토</S.SectionTitle>
         <S.SectionContent>
           <S.ImageWrap>
-            <S.MediaImage>
-              <img src={url + poster_path} alt="movie" onError={handleOnErrorImage} />
-            </S.MediaImage>
-            <S.MediaImage>
-              <img src={url + backdrop_path} alt="movie" onError={handleOnErrorImage} />
-            </S.MediaImage>
+            {poster_path && (
+              <S.MediaImage>
+                <img src={url + poster_path} alt="movie" onError={handleOnErrorImage} />
+              </S.MediaImage>
+            )}
+            {backdrop_path && (
+              <S.MediaImage>
+                <img src={url + backdrop_path} alt="movie" onError={handleOnErrorImage} />
+              </S.MediaImage>
+            )}
           </S.ImageWrap>
         </S.SectionContent>
       </S.Section>
