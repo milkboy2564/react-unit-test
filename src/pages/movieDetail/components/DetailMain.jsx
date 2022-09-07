@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../../../styles/theme';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 
-const DetailMain = ({ movieDetail }) => {
+const DetailMain = ({ data }) => {
   const {
     title,
     original_title,
@@ -12,10 +14,12 @@ const DetailMain = ({ movieDetail }) => {
     production_countries,
     adult,
     runtime,
-  } = movieDetail;
+    vote_average,
+    popularity,
+    tagline,
+  } = data;
 
-  const isDataEmpty = Object.keys(movieDetail).length === 0;
-  if (isDataEmpty) return <>Loading,...</>;
+  // const url = process.env.REACT_APP_IMAGE_URL;
 
   return (
     <Wrapper>
@@ -27,6 +31,7 @@ const DetailMain = ({ movieDetail }) => {
           <Korean>{title}</Korean>
           <OriginalName>{original_title}</OriginalName>
         </MovieTitle>
+        <MovieTag>{tagline}</MovieTag>
         <DetailContents>
           <InnerContenst>
             <InfoList>
@@ -34,18 +39,17 @@ const DetailMain = ({ movieDetail }) => {
                 <MovieInfoTitle style={{ color: `red` }}>미성년자 관람불가</MovieInfoTitle>
               ) : null}
             </InfoList>
+
             <InfoList>
               <MovieInfoTitle>개봉</MovieInfoTitle>
               <MovieInfoContents>{release_date}</MovieInfoContents>
             </InfoList>
-
             <InfoList>
               <MovieInfoTitle>장르</MovieInfoTitle>
               {Object.values(genres).map(genres => (
                 <MovieInfoContents key={genres.id}>{genres.name}</MovieInfoContents>
               ))}
             </InfoList>
-
             <InfoList>
               <MovieInfoTitle>국가</MovieInfoTitle>
               {Object.values(production_countries).map(countries => (
@@ -60,11 +64,21 @@ const DetailMain = ({ movieDetail }) => {
           <InnerContenst>
             <InfoList>
               <MovieInfoTitle>평점</MovieInfoTitle>
-              <MovieInfoContents>{runtime}분</MovieInfoContents>
+              <Stack spacing={1}>
+                <Rating
+                  name="read-only"
+                  style={{ fontSize: '16px' }}
+                  value={vote_average}
+                  readOnly
+                />
+              </Stack>
+              <MovieInfoContents style={{ marginLeft: '6px' }}>
+                {vote_average.toFixed(0)}
+              </MovieInfoContents>
             </InfoList>
             <InfoList>
-              <MovieInfoTitle>누적 관객</MovieInfoTitle>
-              <MovieInfoContents>{runtime}</MovieInfoContents>
+              <MovieInfoTitle>인기도</MovieInfoTitle>
+              <MovieInfoContents>{popularity}</MovieInfoContents>
             </InfoList>
           </InnerContenst>
         </DetailContents>
@@ -72,7 +86,7 @@ const DetailMain = ({ movieDetail }) => {
     </Wrapper>
   );
 };
-// const SIMPLE_INFOMATION = [{ 개봉: release_dates }, {}];
+
 const Wrapper = styled.section`
   display: flex;
   width: 1100px;
@@ -90,6 +104,27 @@ const PosterImage = styled.img`
   width: 100%;
   border-radius: 8px;
 `;
+const MovieTag = styled.div`
+  margin-top: 14px;
+  width: 40%;
+  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-size: 18px;
+  font-weight: 600;
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+`;
+
 const MovieIntro = styled.div`
   color: ${props => theme.black};
 `;
@@ -110,11 +145,12 @@ const DetailContents = styled.div`
 `;
 const InnerContenst = styled.div`
   display: table;
-  margin-right: 20px;
+  margin-right: 24px;
   font-size: 16px;
 `;
 const InfoList = styled.dl`
   display: flex;
+  align-items: center;
   line-height: 27px;
   font-size: 14px;
 `;
