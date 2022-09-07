@@ -19,7 +19,8 @@ const TabMedia = ({ movieData, videoData, url, handleOnErrorImage }) => {
                 type="text/html"
                 width="1100"
                 height="580"
-                src={`http://www.youtube.com/embed/${TRAILER[0].key}?autoplay=1&mute=0`}
+                src={`http://www.youtube.com/embed/${TRAILER[0].key}?autoplay=1&mute=1`}
+                allow="autoplay"
                 frameBorder="0"
               ></iframe>
             </S.Video>
