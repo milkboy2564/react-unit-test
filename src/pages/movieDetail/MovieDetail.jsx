@@ -7,11 +7,47 @@ import DetailSub from './components/DetailSub';
 
 function MovieDetail() {
   const { movie_id } = useParams();
-  const { data: movieData } = useQuery(['detail'], () => movieApi.movieDetail(movie_id), {});
+  const { data: movieData } = useQuery(
+    ['detail'],
+    async () => {
+      return await movieApi.movieDetail(movie_id);
+    },
+    {
+      staleTime: 20000,
+      enabled: !!movie_id,
+      onError: res => {
+        console.error(res);
+      },
+    }
+  );
 
-  const { data: videoData } = useQuery(['videos'], () => movieApi.movieVideos(movie_id), {});
+  const { data: videoData } = useQuery(
+    ['videos'],
+    async () => {
+      return await movieApi.movieVideos(movie_id);
+    },
+    {
+      staleTime: 20000,
+      enabled: !!movie_id,
+      onError: res => {
+        console.error(res);
+      },
+    }
+  );
 
-  const { data: creditData } = useQuery(['credits'], () => movieApi.movieCredits(movie_id), {});
+  const { data: creditData } = useQuery(
+    ['credits'],
+    async () => {
+      return await movieApi.movieCredits(movie_id);
+    },
+    {
+      staleTime: 20000,
+      enabled: !!movie_id,
+      onError: res => {
+        console.error(res);
+      },
+    }
+  );
 
   return (
     <Wrap>
