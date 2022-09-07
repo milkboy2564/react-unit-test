@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MovieDetail from './pages/movieDetail/MovieDetail';
 import Header from './components/Header';
 import GlobalStyle from './styles/Globalstyles';
 
