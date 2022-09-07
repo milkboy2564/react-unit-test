@@ -8,7 +8,7 @@ import DetailSub from './components/DetailSub';
 function MovieDetail() {
   const { movie_id } = useParams();
   const { data: movieData } = useQuery(
-    ['detail'],
+    ['detail', movie_id],
     () => {
       return movieApi.movieDetail(movie_id);
     },
@@ -23,7 +23,7 @@ function MovieDetail() {
   );
 
   const { data: videoData } = useQuery(
-    ['videos'],
+    ['videos', movie_id],
     () => {
       return movieApi.movieVideos(movie_id);
     },
@@ -38,7 +38,7 @@ function MovieDetail() {
   );
 
   const { data: creditData } = useQuery(
-    ['credits'],
+    ['credits', movie_id],
     () => {
       return movieApi.movieCredits(movie_id);
     },
