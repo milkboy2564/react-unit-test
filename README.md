@@ -135,7 +135,7 @@ src
 
 - [Git-Flow](https://github.com/wanted-pre-onboarding-4/Fruitte/wiki/Convention-&-Git-Flow#git-flow)
 - [Commit-Convention](https://github.com/wanted-pre-onboarding-4/Fruitte/wiki/Convention-&-Git-Flow#commit-convention)
-- [프로젝트에서의 캐싱](https://github.com/wanted-pre-onboarding-4/Movie/wiki/%EC%BA%90%EC%8B%B1%EC%9D%B4%EB%9E%80)
+- [프로젝트에서의 캐싱](https://github.com/wanted-pre-onboarding-4/Fourflix/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90%EC%84%9C%EC%9D%98-%EC%BA%90%EC%8B%B1)
 - [지난 과제 피드백](https://github.com/wanted-pre-onboarding-4/Fourflix/wiki/%EC%A7%80%EB%82%9C-%EA%B3%BC%EC%A0%9C-%ED%94%BC%EB%93%9C%EB%B0%B1)
 
 
