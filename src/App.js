@@ -7,6 +7,8 @@ import Layout from './components/Layout';
 import NotFound from './components/NotFound';
 import MoviePage from './pages/movieList/MoviePage';
 
+// Husky Test
+
 function App() {
   return (
     <Router>
