@@ -27,7 +27,8 @@
     "postinstall": "husky install",
     "format": "prettier --cache --write .",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test-coverage": "echo '이건 푸시하기 전에 나오는거에요'"
   },
   "lint-staged": {
     "**/*.{ts, tsx, js, jsx}": [
